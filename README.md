@@ -24,5 +24,10 @@ pip install -r requirements.txt
 ./test.py
 
 # monitor the queue
-while true; do clear; psql -c 'select id, created_at, started_at, tries, timeout, worker_id, result from job order by created_at desc limit 10' | cat; psql -c "select * from queue_size('default')"| cat; sleep 2; done
+while true; do
+  clear
+  psql -c 'select id, created_at, started_at, tries, timeout, worker_id, result from job order by created_at desc limit 10' | cat
+  psql -c "select * from queue_size('default')" | cat
+  sleep 2
+done
 ```
